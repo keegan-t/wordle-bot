@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Wordle Bot</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<header>
+    <h1>Wordle</h1>
+    <span class="bot-badge">BOT</span>
+</header>
+
+<div id="input-area">
+    <input id="word-input" type="text" maxlength="5" placeholder="WORD"
+           autocomplete="off" autocorrect="off" spellcheck="false" autofocus/>
+    <button id="solve-btn">Solve</button>
+</div>
+
+<canvas id="confetti-canvas"></canvas>
+<div id="error-msg"></div>
+<div id="board"></div>
+<div id="message"></div>
+<button id="share-btn">Share ↗</button>
+<div id="keyboard-wrapper">
+    <div id="sad-face">☹️</div>
+    <div id="keyboard"></div>
+</div>
+
+<script src="words.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>
