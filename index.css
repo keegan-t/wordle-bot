@@ -51,7 +51,8 @@ header h1 {
 
 .bot-badge {
     font-size: 1.8rem;
-    background: var(--green);
+    /*background: var(--green);*/
+    background: linear-gradient(to bottom right, #0094FF, #B200FF);
     color: white;
     padding: 3px 7px;
     border-radius: 3px;
