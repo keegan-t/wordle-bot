@@ -141,6 +141,7 @@ const shareButton = document.getElementById("share-btn");
 const errorElement = document.getElementById("error-msg");
 const wordInput = document.getElementById("word-input");
 const solveButton = document.getElementById("solve-btn");
+const todayButton = document.getElementById("today-btn");
 
 // Build tile grid
 const tiles = Array.from({ length: 6 }, () =>
@@ -282,6 +283,7 @@ function animateGame(history, won, answer) {
 
         wordInput.disabled = false;
         solveButton.disabled = false;
+        todayButton.disabled = false;
     }, rowDelay + 100);
 }
 
@@ -352,7 +354,7 @@ function confetti() {
         const fromLeft = i < COUNT / 2;
         return {
             x: fromLeft ? 0 : canvas.width,
-            y: canvas.height * 0.75,
+            y: canvas.height * 0.5,
             vx: fromLeft ? (Math.random() * 3.5 + 1.5) : -(Math.random() * 3.5 + 1.5),
             vy: -(Math.random() * 8 + 4),
             color: COLORS[Math.floor(Math.random() * COLORS.length)],
@@ -424,13 +426,33 @@ function solve() {
     resetBoard();
     wordInput.disabled = true;
     solveButton.disabled = true;
+    todayButton.disabled = true;
 
     const { history, won } = playGame(raw);
     animateGame(history, won, raw);
 }
 
+async function fetchTodaysWord() {
+    todayButton.disabled = true;
+    errorElement.textContent = "";
+
+    try {
+        const now = new Date();
+        const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+        const res = await fetch(`https://corsproxy.io/?url=https://www.nytimes.com/svc/wordle/v2/${date}.json`);
+        if (!res.ok) throw new Error();
+        const { solution } = await res.json();
+        wordInput.value = solution.toUpperCase();
+        solve();
+    } catch {
+        errorElement.textContent = "Couldn't fetch today's word.";
+        todayButton.disabled = false;
+    }
+}
+
 // Event listeners
 solveButton.addEventListener("click", solve);
+todayButton.addEventListener("click", fetchTodaysWord);
 wordInput.addEventListener("keydown", e => {
     if (e.key === "Enter") solve();
 });

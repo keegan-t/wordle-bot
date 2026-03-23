@@ -66,6 +66,7 @@ header h1 {
     display: flex;
     gap: 8px;
     align-items: center;
+    width: calc(5 * var(--tile) + 4 * var(--gap));
 }
 
 #word-input {
@@ -93,7 +94,36 @@ header h1 {
     opacity: 0.5;
 }
 
+#today-btn {
+    background: var(--subtext);
+    border: none;
+    border-radius: 4px;
+    padding: 0;
+    width: 46px;
+    height: 46px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+}
+
+#today-btn img {
+    width: 26px;
+    height: 26px;
+}
+
+#today-btn:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+#today-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
 #solve-btn {
+    flex: 1;
     background: var(--green);
     color: white;
     border: none;
@@ -341,6 +371,11 @@ header h1 {
 
     #word-input,
     #solve-btn {
+        height: 40px;
+    }
+
+    #today-btn {
+        width: 40px;
         height: 40px;
     }
 
