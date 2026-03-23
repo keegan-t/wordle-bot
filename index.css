@@ -225,8 +225,8 @@ header h1 {
 /* === Share button === */
 #share-btn {
     display: none;
-    background: white;
-    color: #121213;
+    background: var(--green);
+    color: white;
     border: none;
     border-radius: 4px;
     padding: 12px 28px;
