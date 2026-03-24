@@ -96,12 +96,24 @@ function botGuess(history) {
     const greenCount = Object.keys(greens).length;
     const guessesLeft = MAX_GUESSES - history.length;
 
-    // Sacrifice move to unlock 4+ letters for the final guess
+    // Guess through all remaining words
+    if (candidates.length <= guessesLeft) return candidates[0];
+
+    // Sacrifice move to find the most unseen letters that can fill the final slot
     if (greenCount === 4 && guessesLeft === 2) {
-        const sac = WORDS.find(
-            w => !guessed.has(w) && [...w].filter(c => !seen.has(c)).length >= 4
-        );
-        if (sac) return sac;
+        const missingPos = [0, 1, 2, 3, 4].find(i => !greens[i]);
+        const possibleFills = new Set(candidates.map(w => w[missingPos]));
+
+        let bestSac = null, bestScore = 0;
+        for (const w of WORDS) {
+            if (guessed.has(w)) continue;
+            const score = new Set([...w].filter(c => !seen.has(c) && possibleFills.has(c))).size;
+            if (score > bestScore) {
+                bestScore = score;
+                bestSac = w;
+            }
+        }
+        if (bestSac && bestScore > 0) return bestSac;
     }
 
     // With 3+ greens, pick the most common valid word
