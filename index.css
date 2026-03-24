@@ -101,6 +101,7 @@ header h1 {
     padding: 0;
     width: 46px;
     height: 46px;
+    flex-shrink: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -372,6 +373,11 @@ header h1 {
     #word-input,
     #solve-btn {
         height: 40px;
+    }
+
+    #solve-btn {
+        padding: 0;
+        min-width: 0;
     }
 
     #today-btn {
