@@ -451,7 +451,7 @@ async function fetchTodaysWord() {
     try {
         const now = new Date();
         const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-        const res = await fetch(`https://corsproxy.io/?url=https://www.nytimes.com/svc/wordle/v2/${date}.json`);
+        const res = await fetch(`/wordle-api/${date}.json`);
         if (!res.ok) throw new Error();
         const { solution } = await res.json();
         wordInput.value = solution.toUpperCase();
