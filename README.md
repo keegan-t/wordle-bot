@@ -2,7 +2,7 @@
 
 An automatic Wordle solver that plays through any given word like a real game.
 
-**[Try it on GitHub Pages →](https://keegan-t.github.io/wordle-bot)**
+**[Try it on keegant.dev →](https://wordle.keegant.dev)**
 
 ## Features
 
