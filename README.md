@@ -1,4 +1,4 @@
-# <img src="assets/icon.png" width="40" align="center" alt="Wordle Logo">ordle Bot
+# <img src="assets/icon.png" height="40" align="top" alt="">ordle Bot
 
 An automatic Wordle solver that plays through any given word like a real game.
 
